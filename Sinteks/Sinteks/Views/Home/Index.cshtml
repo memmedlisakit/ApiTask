@@ -1,0 +1,52 @@
+﻿@using Sinteks.Models
+@model Sale
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            <button class="btn btn-success btn_json">json</button>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-success btn_xml">xml</button>
+        </div>
+    </div>
+
+    <form method="post" action="/Home/Index">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="form-group">
+                    <label>Product Amount:</label>
+                    <input required name="Sal_product_amount" type="text" class="form-control amount" />
+                </div>
+                <div class="form-group">
+                    <label>Total Price:</label>
+                    <input name="Sal_total_price" type="text" class="form-control total_price" />
+                </div>
+                <div class="form-group">
+                    <label>Product Name:</label>
+                    <select required name="Sal_product_id" class="form-control product">
+                       @foreach (Product p in ViewBag.products)
+                       {
+                           <option data-pro-price="@p.Pro_price" value="@p.Pro_id">@p.Pro_name  ------  $@p.Pro_price </option>
+                       }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Seller Name:</label>
+                    <select required name="Sal_seller_id" class="form-control">
+                       @foreach (Seller s in ViewBag.sellers)
+                       {
+                           <option value="@s.Seller_id">@s.Seller_name</option>
+                       }
+                    </select>
+                </div> 
+                    <input required type="submit" value="Save Sale" class="btn btn-primary"/> 
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
